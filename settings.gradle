@@ -1,0 +1,6 @@
+rootProject.name = 'products'
+include 'domain'
+include 'infrastructure'
+
+include ':comp-products-rest'
+include ':comp-products-mongo'

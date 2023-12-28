@@ -1,0 +1,15 @@
+
+jar {
+    enabled = true
+}
+
+configurations {
+    testOutput
+}
+
+dependencies {
+    testOutput sourceSets.test.output
+
+    implementation "org.apache.commons:commons-lang3:$apache_commons_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_reflect_version"
+}

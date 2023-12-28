@@ -1,0 +1,15 @@
+package com.jeferro.products.infrastructure.shared.components.rest.mappers
+
+import com.jeferro.products.domain.shared.entities.auth.Username
+import com.jeferro.products.infrastructure.shared.utils.mappers.SimpleValueMapper
+import org.mapstruct.Mapper
+import org.mapstruct.factory.Mappers
+
+@Mapper
+abstract class UsernameRestMapper : SimpleValueMapper<Username, String>() {
+
+    companion object {
+        val instance: UsernameRestMapper = Mappers.getMapper(UsernameRestMapper::class.java)
+    }
+
+}

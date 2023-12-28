@@ -1,0 +1,34 @@
+components:
+  schemas:
+    SignInInput:
+      type: object
+      description: Sign In Input
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          description: Username
+          example: 'username'
+        password:
+          type: string
+          description: Password
+          example: 'password'
+
+    Auth:
+      type: object
+      description: Authentication information
+      required:
+        - userId
+        - roles
+      properties:
+        userId:
+          type: string
+          description: Identifier of user
+          example: 'one-user'
+        roles:
+          type: array
+          items:
+            type: string
+          example: [ "USER" ]

@@ -1,0 +1,36 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'org.jetbrains.kotlin.plugin.spring'
+}
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}
+
+configurations {
+    testOutput
+}
+
+dependencies {
+    testOutput sourceSets.test.output
+
+    implementation "org.apache.commons:commons-lang3:$apache_commons_version"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinx_coroutines_version"
+
+    api "org.springframework.boot:spring-boot-starter-data-mongodb"
+    api "org.springframework.boot:spring-boot-starter-data-mongodb-reactive"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_reflect_version"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.springframework.boot:spring-boot-testcontainers"
+
+    testImplementation "org.testcontainers:junit-jupiter"
+    testImplementation "org.testcontainers:mongodb:$testcontainers_version"
+}

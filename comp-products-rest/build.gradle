@@ -1,0 +1,63 @@
+import org.codehaus.groovy.runtime.GStringImpl
+
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'org.jetbrains.kotlin.plugin.spring'
+    id "org.openapi.generator"
+}
+
+ext {
+    base_package = "${group}.components.products.rest" as GStringImpl
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-reactive:$kotlinx_coroutines_version"
+
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api "jakarta.validation:jakarta.validation-api"
+
+    implementation "org.springdoc:springdoc-openapi-data-rest:$springdoc_openapi_version"
+    implementation "org.springdoc:springdoc-openapi-ui:$springdoc_openapi_version"
+    implementation "org.springdoc:springdoc-openapi-kotlin:$springdoc_openapi_version"
+
+}
+
+openApiGenerate {
+    generatorName.set("kotlin-spring")
+    inputSpec.set("$projectDir/src/main/resources/openapi.yml")
+
+    packageName.set("${base_package}")
+    apiPackage.set("${base_package}.apis")
+    modelPackage.set("${base_package}.dtos")
+    modelNameSuffix.set("RestDTO")
+    apiNameSuffix.set("Api")
+
+    generateApiTests.set(false)
+    configOptions.set([
+            useTags: "true",
+            reactive: "true",
+            gradleBuildFile: "false",
+            useSpringBoot3: "true",
+            documentationProvider: "none",
+            interfaceOnly: "true"
+    ])
+}
+
+compileKotlin {
+    dependsOn tasks.openApiGenerate
+}
+
+sourceSets {
+    main {
+        kotlin.srcDir("${projectDir}/build/generate-resources")
+    }
+}
