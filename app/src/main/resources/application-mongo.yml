@@ -1,0 +1,10 @@
+
+spring:
+    data:
+      mongodb:
+        host: ${components.mongo.host}
+        port: ${components.mongo.port}
+        database: ${components.mongo.database}
+        username: ${components.mongo.username}
+        password: ${components.mongo.password}
+        authentication-database: ${components.mongo.authentication-database}

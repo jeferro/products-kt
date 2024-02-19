@@ -1,0 +1,30 @@
+metadata:
+  application: products-kt
+
+logging:
+  level:
+    root: WARN
+    com.jeferro: INFO
+
+spring:
+  application:
+    name: ${metadata.application}
+  profiles:
+    active: local
+    include:
+      - mongo
+
+components:
+  security:
+    jwt:
+      issuer: ${metadata.application}
+      password: 123456
+      duration: 7D
+
+  mongo:
+    host: localhost
+    port: 27017
+    database: products
+    authentication-database: admin
+    username: admin
+    password: admin
