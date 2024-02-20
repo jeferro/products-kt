@@ -3,7 +3,7 @@ version: '3'
 services:
 
   mongo:
-    container_name: products_mongo
+    container_name: products-kt_mongo
     image: mongo:7.0
     restart: always
     environment:
@@ -16,7 +16,7 @@ services:
        - ./docker/mongo/initdb:/docker-entrypoint-initdb.d:ro
 
   zookeeper:
-    container_name: products_zookeeper
+    container_name: products-kt_zookeeper
     image: confluentinc/cp-zookeeper:7.3.2
     hostname: zookeeper
     ports:
@@ -27,7 +27,7 @@ services:
       ZOOKEEPER_SERVERS: zookeeper:2888:3888
 
   kafka:
-    container_name: products_kafka
+    container_name: products-kt_kafka
     image: confluentinc/cp-kafka:7.3.2
     hostname: kafka
     depends_on:
@@ -49,7 +49,7 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
 
   schema-registry:
-    container_name: products_schema-registry
+    container_name: products-kt_schema-registry
     image: confluentinc/cp-schema-registry:7.3.2
     hostname: schema-registry
     depends_on:
@@ -63,7 +63,7 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
 
   kafka-ui:
-    container_name: products_kafka-ui
+    container_name: products-kt_kafka-ui
     image: provectuslabs/kafka-ui:latest
     depends_on:
       - zookeeper
