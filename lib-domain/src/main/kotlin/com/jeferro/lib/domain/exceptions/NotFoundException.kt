@@ -1,5 +1,5 @@
 package com.jeferro.lib.domain.exceptions
 
-class NotFoundException(
+open class NotFoundException(
     message: String
 ) : DomainException(message, null)

@@ -1,0 +1,258 @@
+openapi: "3.0.0"
+
+info:
+  version: 1.0.0
+  title: Product Rest APId
+  description: API Rest definition to manage products
+
+security:
+  - BearerAuth: []
+
+servers:
+  - url: https://localhost:8080
+    description: Local
+
+tags:
+  - name: Authentications
+    description: Section of the authentication
+  - name: Products
+    description: Section of the products
+  - name: Product reviews
+    description: Section of the product reviews
+
+paths:
+  /v1/authentications:
+    post:
+      operationId: authenticate
+      summary: Authenticate the user
+      description: Authenticate the user
+      tags:
+        - Authentications
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './authentications.yml#/components/schemas/SignInInput'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './authentications.yml#/components/schemas/Auth'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+  /v1/products:
+    get:
+      operationId: list-products
+      summary: List products
+      description: List products
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './products.yml#/components/schemas/Products'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+  /v1/products/{productId}:
+    get:
+      operationId: get-product
+      summary: Get product
+      description: Get product
+      tags:
+        - Products
+      parameters:
+        - $ref: './products.yml#/components/parameters/productIdPath'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './products.yml#/components/schemas/Product'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '404':
+          $ref: './shared.yml#/components/responses/NotFound'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+    put:
+      operationId: upsert-product
+      summary: Upsert product
+      description: Upsert product
+      tags:
+        - Products
+      parameters:
+        - $ref: './products.yml#/components/parameters/productIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './products.yml#/components/schemas/UpsertProductInput'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './products.yml#/components/schemas/Product'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+    delete:
+      operationId: delete-product
+      summary: Delete product
+      description: Delete product
+      tags:
+        - Products
+      parameters:
+        - $ref: './products.yml#/components/parameters/productIdPath'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './products.yml#/components/schemas/Product'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '404':
+          $ref: './shared.yml#/components/responses/NotFound'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+  /v1/products/{productId}/activation:
+    put:
+      operationId: change-product-activation
+      summary: Change product activation
+      description: Change product activation
+      tags:
+        - Products
+      parameters:
+        - $ref: './products.yml#/components/parameters/productIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './products.yml#/components/schemas/ChangeProductActivationInput'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './products.yml#/components/schemas/Product'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+  /v1/products/{productId}/reviews/{userId}:
+    put:
+      operationId: upsert-product-review
+      summary: Upsert product review
+      description: Upsert product review
+      tags:
+        - Product reviews
+      parameters:
+        - $ref: './products.yml#/components/parameters/productIdPath'
+        - $ref: './users.yml#/components/parameters/userIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './product-reviews.yml#/components/schemas/UpsertProductReviewInput'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './product-reviews.yml#/components/schemas/ProductReview'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+    delete:
+      operationId: delete-product-review
+      summary: Delete product review
+      description: Delete product review
+      tags:
+        - Product reviews
+      parameters:
+        - $ref: './products.yml#/components/parameters/productIdPath'
+        - $ref: './users.yml#/components/parameters/userIdPath'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: './product-reviews.yml#/components/schemas/ProductReview'
+        '400':
+          $ref: './shared.yml#/components/responses/BadRequest'
+        '401':
+          $ref: './shared.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: './shared.yml#/components/responses/Forbidden'
+        '404':
+          $ref: './shared.yml#/components/responses/NotFound'
+        '500':
+          $ref: './shared.yml#/components/responses/InternalError'
+
+components:
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT security
+

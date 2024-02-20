@@ -1,7 +1,7 @@
 package com.jeferro.products.shared.infrastructure.adapters.rest
 
 import com.jeferro.lib.domain.exceptions.*
-import com.jeferro.products.shared.infrastructure.adapters.rest.dtos.ErrorRestDTO
+import com.jeferro.products.components.products.rest.dtos.ErrorRestDTO
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -27,7 +27,7 @@ class RestControllerAdviceIT {
 
 
     @Nested
-    inner class ValueValidationExceptions {
+    inner class ValueValidationExceptionsTests {
 
         @Test
         fun `should map value validation exceptions`() {

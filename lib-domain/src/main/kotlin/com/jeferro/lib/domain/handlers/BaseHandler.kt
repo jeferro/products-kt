@@ -7,29 +7,29 @@ import org.slf4j.LoggerFactory
 import java.time.Duration
 import java.time.Instant
 
-sealed class BaseHandler<P : HandlerParams<R>, R> {
+sealed class BaseHandler<O : Operation<R>, R> {
 
     protected val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     protected open val mandatoryRoles = emptyList<String>()
 
-    suspend fun execute(params: P): R {
-        val auth = params.auth
+    suspend fun execute(operation: O): R {
+        val auth = operation.auth
 
         val startAt = Instant.now()
 
         try {
             auth.ensurePermissions(mandatoryRoles)
 
-            val result = handle(params)
+            val result = handle(operation)
 
             if (this is CommandHandler) {
-                logSuccessExecution(startAt, params, result)
+                logSuccessExecution(startAt, operation, result)
             }
 
             return result
         } catch (cause: Exception) {
-            logErrorExecution(startAt, params, cause)
+            logErrorExecution(startAt, operation, cause)
 
             if (cause is DomainException) {
                 throw cause
@@ -39,26 +39,26 @@ sealed class BaseHandler<P : HandlerParams<R>, R> {
         }
     }
 
-    protected abstract suspend fun handle(params: P): R
+    protected abstract suspend fun handle(operation: O): R
 
     private fun logSuccessExecution(
         startAt: Instant,
-        params: P,
+        operation: O,
         result: R
     ) {
         val duration = calculateDuration(startAt)
 
-        logger.info("$duration \n\t $params \n\t $result\n")
+        logger.info("$duration \n\t $operation \n\t $result\n")
     }
 
     private fun logErrorExecution(
         startAt: Instant,
-        params: P,
+        operation: O,
         cause: Exception
     ) {
         val duration = calculateDuration(startAt)
 
-        logger.error("$duration \n\t $params", cause)
+        logger.error("$duration \n\t $operation", cause)
     }
 
     private fun calculateDuration(startAt: Instant): Duration {

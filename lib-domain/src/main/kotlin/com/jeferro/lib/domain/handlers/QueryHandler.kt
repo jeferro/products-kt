@@ -1,4 +1,4 @@
 package com.jeferro.lib.domain.handlers
 
-abstract class QueryHandler<P : HandlerParams<R>, R>: BaseHandler<P, R>() {
+abstract class QueryHandler<O : Operation<R>, R>: BaseHandler<O, R>() {
 }

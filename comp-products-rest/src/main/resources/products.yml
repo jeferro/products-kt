@@ -1,0 +1,84 @@
+components:
+  parameters:
+    productIdPath:
+      name: productId
+      in: path
+      description: Product id
+      required: true
+      schema:
+        type: string
+      example: 'adc65c2d-e623-4466-9791-dc76fd6bd1b8'
+
+  schemas:
+    UpsertProductInput:
+      type: object
+      description: Upsert product input
+      required:
+        - title
+        - description
+      properties:
+        title:
+          type: string
+          description: Title of the product
+          example: 'title of the product'
+        description:
+          type: string
+          description: Description of the product
+          example: 'description of the product'
+
+    ChangeProductActivationInput:
+      type: object
+      description: Change product activation input
+      required:
+        - enabled
+      properties:
+        enabled:
+          type: boolean
+          description: Activation of the product
+          example: true
+
+    Product:
+      type: object
+      description: Product information
+      required:
+        - id
+        - title
+        - description
+        - enabled
+      properties:
+        id:
+          type: string
+          description: Identifier of product
+          example: 'adc65c2d-e623-4466-9791-dc76fd6bd1b8'
+        title:
+          type: string
+          description: Title of the product
+          example: 'title of the product'
+        description:
+          type: string
+          description: Description of the product
+          example: 'description of the product'
+        enabled:
+          type: boolean
+          description: Check if the product is enabled
+          example: true
+
+    Products:
+      type: object
+      description: Listing of products
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          example:
+            - id: 'adc65c2d-e623-4466-9791-dc76fd6bd1b8'
+              title: 'title one product'
+              description: 'description one product'
+              enabled: true
+            - id: '12f4348b-82e5-4170-9158-2ff69d29ca45'
+              title: 'disabled product'
+              description: 'description of disabled product'
+              enabled: false

@@ -1,0 +1,10 @@
+components:
+  parameters:
+    userIdPath:
+      name: userId
+      in: path
+      description: User id
+      required: true
+      schema:
+        type: string
+      example: 'one-user-id'

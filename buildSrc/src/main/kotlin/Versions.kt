@@ -17,6 +17,8 @@ object Versions {
 
     const val mockitoKotlin = "5.2.1"
 
+    val openapi = "1.7.0"
+
     const val jwt = "4.4.0"
 
     const val testcontainers = "1.19.3"

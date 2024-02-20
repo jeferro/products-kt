@@ -1,0 +1,43 @@
+components:
+
+  schemas:
+    UpsertProductReviewInput:
+      type: object
+      description: Upsert product review input
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: Text of the review
+          example: 'title of the product'
+
+    ProductReviewId:
+      type: object
+      description: Identifier of the product review
+      required:
+        - userId
+        - productId
+      properties:
+        userId:
+          type: string
+          description: Identifier of user
+          example: 'one-user-id'
+        productId:
+          type: string
+          description: Identifier of product
+          example: 'adc65c2d-e623-4466-9791-dc76fd6bd1b8'
+
+    ProductReview:
+      type: object
+      description: Product review
+      required:
+        - id
+        - comment
+      properties:
+        id:
+          $ref: '#/components/schemas/ProductReviewId'
+        comment:
+          type: string
+          description: Comment of the review
+          example: 'comment of the product'

@@ -1,6 +1,14 @@
 package com.jeferro.lib.domain.events
 
-interface EventBus {
+import com.jeferro.lib.domain.models.entities.Aggregate
 
-    suspend fun publishAll(events: List<DomainEvent>)
+abstract class EventBus {
+
+    suspend fun publishAll(aggregate: Aggregate<*>) {
+        val events = aggregate.pullEvents()
+
+        publishAll(events)
+    }
+
+    abstract suspend fun publishAll(events: List<DomainEvent>)
 }

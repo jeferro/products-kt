@@ -1,7 +1,7 @@
 package com.jeferro.products.shared.infrastructure.adapters.rest
 
 import com.jeferro.lib.domain.exceptions.*
-import com.jeferro.products.shared.infrastructure.adapters.rest.dtos.ErrorRestDTO
+import com.jeferro.products.components.products.rest.dtos.ErrorRestDTO
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

@@ -1,4 +1,3 @@
 package com.jeferro.lib.domain.handlers
 
-abstract class CommandHandler<P : HandlerParams<R>, R>: BaseHandler<P, R>() {
-}
+abstract class CommandHandler<O : Operation<R>, R>: BaseHandler<O, R>()

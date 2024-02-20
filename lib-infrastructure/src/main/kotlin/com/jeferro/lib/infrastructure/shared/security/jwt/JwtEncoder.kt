@@ -6,7 +6,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException
 import com.jeferro.lib.domain.exceptions.UnauthorizedException
 import com.jeferro.lib.domain.models.auth.Auth
 import com.jeferro.lib.domain.models.auth.UserId
-import com.jeferro.lib.infrastructure.shared.security.AuthRestUserDetails
+import com.jeferro.lib.infrastructure.shared.security.models.AuthRestUserDetails
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.stereotype.Component

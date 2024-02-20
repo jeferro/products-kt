@@ -8,15 +8,10 @@ abstract class TimeService {
     abstract fun now(): Instant
 
     companion object {
-        private var instance: TimeService = DateTimeService()
+        private var instance: TimeService = InstantTimeService()
 
         fun now(): Instant {
-            /*
-             * TODO: Mongo date precision
-             *  We truncate millis because mongo dates have a millis precision
-             */
             return instance.now()
-                .truncatedTo(ChronoUnit.MILLIS)
         }
 
         @JvmStatic

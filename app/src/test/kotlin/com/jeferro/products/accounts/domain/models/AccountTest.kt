@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 internal class AccountTest {
 
     @Nested
-    inner class Constructor {
+    inner class ConstructorTests {
 
         @Test
         fun `should create user credential`() {

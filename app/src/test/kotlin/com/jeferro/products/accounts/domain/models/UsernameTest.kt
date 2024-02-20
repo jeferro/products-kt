@@ -9,7 +9,7 @@ import org.junit.jupiter.api.assertThrows
 class UsernameTest {
 
     @Nested
-    inner class Constructor {
+    inner class ConstructorTests {
         @Test
         fun `should create username`() {
             val value = "username"

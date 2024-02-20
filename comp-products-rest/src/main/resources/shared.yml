@@ -1,0 +1,94 @@
+components:
+  schemas:
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: codes of the error
+          enum:
+            - 'INTERNAL_ERROR'
+            - 'VALUE_VALIDATION'
+            - 'UNAUTHORIZED'
+            - 'FORBIDDEN'
+            - 'NOT_FOUND'
+          x-enum-varnames:
+            - INTERNAL_ERROR
+            - VALUE_VALIDATION
+            - UNAUTHORIZED
+            - FORBIDDEN
+            - NOT_FOUND
+        message:
+          type: string
+          description: message of the error
+
+  responses:
+
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            BadRequestExample:
+              summary: Bad request
+              value:
+                code: 'BAD_REQUEST'
+                message: 'The parameter X is required'
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            UnauthorizedExample:
+              summary: Unauthorized
+              value:
+                code: 'UNAUTHORIZED'
+                message: 'Credentials are not valid'
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            ForbiddenExample:
+              summary: Forbidden
+              value:
+                code: 'UNAUTHORIZED'
+                message: 'Unauthorized operation'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            NotFoundExample:
+              summary: NotFound
+              value:
+                code: 'NOT_FOUND'
+                message: 'Element not found'
+
+    InternalError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            InternalErrorExample:
+              summary: Internal error
+              value:
+                code: 'INTERNAL_ERROR'
+                message: 'There was an internal error'

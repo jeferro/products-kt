@@ -8,6 +8,8 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4" apply false
 
     id("org.jetbrains.kotlin.kapt") version "1.9.21" apply false
+
+    id("org.openapi.generator") version "7.1.0" apply false
 }
 
 

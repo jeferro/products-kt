@@ -17,6 +17,8 @@ jacoco {
 dependencies {
     implementation(project(":lib-infrastructure"))
 
+    implementation(project(":comp-products-rest"))
+
     // Mockito
     testImplementation("org.mockito.kotlin", "mockito-kotlin", Versions.mockitoKotlin)
 
@@ -57,11 +59,11 @@ tasks.withType<JacocoReport> {
             files(classDirectories.files.map {
                 fileTree(it).apply {
                     exclude(
-                        "**/*Application*",
+                        "**/Application*",
                         "**/*Configuration*",
                         "**/dtos/**",
                         "**/daos/**",
-                        "**/params/**",
+                        "**/operations/**",
                         "**/mappers/**"
                     )
                 }
