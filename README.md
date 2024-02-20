@@ -24,6 +24,7 @@ asdf install
 And build the project:
 
 ~~~bash
+cd code
 gradle clean build
 ~~~
 
@@ -39,5 +40,6 @@ docker-compose up -d
 And then, we can execute the application locally:
 
 ~~~bash
+cd code
 gradle bootRun
 ~~~
