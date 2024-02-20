@@ -1,9 +1,9 @@
 package com.jeferro.products.accounts.infrastructure.adapters.rest
 
-import com.jeferro.lib.domain.handlers.bus.HandlerBus
+import com.jeferro.lib.application.bus.HandlerBus
 import com.jeferro.lib.domain.models.auth.Auth
 import com.jeferro.lib.infrastructure.shared.security.services.AuthRestService
-import com.jeferro.products.accounts.domain.handlers.operations.SignIn
+import com.jeferro.products.accounts.application.operations.SignIn
 import com.jeferro.products.accounts.infrastructure.adapters.rest.mappers.AuthRestMapper
 import com.jeferro.products.accounts.infrastructure.adapters.rest.mappers.UsernameRestMapper
 import com.jeferro.products.components.products.rest.dtos.AuthRestDTO

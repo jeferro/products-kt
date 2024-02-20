@@ -2,7 +2,7 @@ rootProject.name = "products-kt"
 
 include(":app")
 
-include(":lib-domain")
-include(":lib-infrastructure")
+include(":lib-ddd")
+include(":lib-ddd-spring")
 
 include(":comp-products-rest")

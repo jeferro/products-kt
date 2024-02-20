@@ -1,7 +1,7 @@
 package com.jeferro.products.shared.domain.events
 
 import com.jeferro.lib.domain.events.DomainEvent
-import com.jeferro.lib.domain.events.EventBus
+import com.jeferro.lib.domain.events.bus.EventBus
 
 class EventBusInMemory : EventBus() {
 

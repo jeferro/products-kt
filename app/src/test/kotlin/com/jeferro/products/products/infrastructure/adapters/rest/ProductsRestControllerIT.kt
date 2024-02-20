@@ -1,8 +1,9 @@
 package com.jeferro.products.products.infrastructure.adapters.rest
 
-import com.jeferro.lib.domain.handlers.bus.HandlerBus
+import com.jeferro.lib.application.bus.HandlerBus
 import com.jeferro.lib.infrastructure.shared.security.services.AuthRestService
 import com.jeferro.products.domain.products.entities.Products
+import com.jeferro.products.products.application.operations.*
 import com.jeferro.products.products.domain.handlers.operations.*
 import com.jeferro.products.products.domain.models.Product
 import com.jeferro.products.products.domain.models.ProductMother.oneProduct
@@ -25,7 +26,6 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.ResultMatcher
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
-import java.time.ZoneOffset
 
 @WebMvcTest(ProductsRestController::class)
 @Import(RestITConfiguration::class)
@@ -121,7 +121,7 @@ class ProductsRestControllerIT {
     inner class UpsertProductTest {
 
         @Test
-        fun `should get product`() = runTest {
+        fun `should upsert product`() = runTest {
             val auth = oneUserAuth()
             val authToken = authRestService.getAuthenticationToken(auth)
 
@@ -140,11 +140,11 @@ class ProductsRestControllerIT {
             val requestContent = """{
                 "title": "$title",
                 "description": "$description"
-            }""".trimIndent()
+            }"""
             val requestBuilder = MockMvcRequestBuilders.put("/v1/products/${expectedProduct.id}")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.AUTHORIZATION, authToken)
-                .content(requestContent)
+                .content(requestContent.trimIndent())
 
             mockMvc.perform(requestBuilder)
                 .asyncDispatch(mockMvc)

@@ -1,13 +1,13 @@
 package com.jeferro.products.products.infrastructure.adapters.rest
 
-import com.jeferro.lib.domain.handlers.bus.HandlerBus
+import com.jeferro.lib.application.bus.HandlerBus
 import com.jeferro.lib.infrastructure.shared.security.services.AuthRestService
 import com.jeferro.products.components.products.rest.apis.ProductsApi
 import com.jeferro.products.components.products.rest.dtos.ChangeProductActivationInputRestDTO
 import com.jeferro.products.components.products.rest.dtos.ProductRestDTO
 import com.jeferro.products.components.products.rest.dtos.ProductsRestDTO
 import com.jeferro.products.components.products.rest.dtos.UpsertProductInputRestDTO
-import com.jeferro.products.products.domain.handlers.operations.*
+import com.jeferro.products.products.application.operations.*
 import com.jeferro.products.products.infrastructure.adapters.rest.mappers.ProductIdRestMapper
 import com.jeferro.products.products.infrastructure.adapters.rest.mappers.ProductRestMapper
 import org.springframework.http.ResponseEntity

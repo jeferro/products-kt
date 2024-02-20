@@ -1,8 +1,8 @@
 package com.jeferro.products.accounts.infrastructure.adapters.rest
 
-import com.jeferro.lib.domain.handlers.bus.HandlerBus
+import com.jeferro.lib.application.bus.HandlerBus
 import com.jeferro.lib.domain.models.auth.Auth
-import com.jeferro.products.accounts.domain.handlers.operations.SignIn
+import com.jeferro.products.accounts.application.operations.SignIn
 import com.jeferro.products.accounts.domain.models.Username
 import com.jeferro.products.shared.domain.models.auth.AuthMother.oneUserAuth
 import com.jeferro.products.shared.infrastructure.adapters.rest.RestITConfiguration
@@ -53,7 +53,7 @@ class AuthenticationRestControllerIT {
             }"""
             val requestBuilder = MockMvcRequestBuilders.post("/v1/authentications")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(requestContent)
+                .content(requestContent.trimIndent())
 
             mockMvc.perform(requestBuilder)
                 .asyncDispatch(mockMvc)

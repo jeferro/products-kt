@@ -3,7 +3,7 @@ package com.jeferro.products.products.domain.services
 import com.jeferro.products.products.domain.exceptions.ProductNotFoundException
 import com.jeferro.products.products.domain.models.ProductIdMother.oneProductId
 import com.jeferro.products.products.domain.models.ProductMother.oneProduct
-import com.jeferro.products.products.domain.repositories.ProductRepositoryInMemory
+import com.jeferro.products.products.domain.repositories.ProductsRepositoryInMemory
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.assertThrows
 
 class ProductFinderTest {
 
-    private val productsRepository = ProductRepositoryInMemory()
+    private val productsRepository = ProductsRepositoryInMemory()
 
     private val productFinder = ProductFinder(
         productsRepository

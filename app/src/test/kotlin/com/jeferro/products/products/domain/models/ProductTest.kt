@@ -1,7 +1,7 @@
 package com.jeferro.products.products.domain.models
 
 import com.jeferro.lib.domain.models.metadata.Metadata
-import com.jeferro.lib.domain.time.FakeTimeService
+import com.jeferro.lib.domain.utils.time.FakeTimeService
 import com.jeferro.products.products.domain.events.ProductActivationChanged
 import com.jeferro.products.products.domain.events.ProductDeleted
 import com.jeferro.products.products.domain.events.ProductUpserted

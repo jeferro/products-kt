@@ -15,7 +15,7 @@ jacoco {
 }
 
 dependencies {
-    implementation(project(":lib-infrastructure"))
+    implementation(project(":lib-ddd-spring"))
 
     implementation(project(":comp-products-rest"))
 
