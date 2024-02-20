@@ -20,12 +20,8 @@ jobs:
       - name: Install asdf & tools
         uses: asdf-vm/actions/install@v3
 
-      - name: Ignore default JVM
-        run: JAVA_HOME=""
-
-      - name: Check default JVM
-        run: echo $JAVA_HOME
-
       - name: Build (skipping test)
         working-directory: code
         run: gradle build -x test --info
+        env:
+          JAVA_HOME:
