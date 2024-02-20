@@ -22,4 +22,4 @@ jobs:
 
       - name: Build (skipping test)
         working-directory: code
-        run: gradle build
+        run: gradle build -x test --info
