@@ -1,4 +1,4 @@
-rootProject.name = "code"
+rootProject.name = "products-kt"
 
 include(":app")
 
