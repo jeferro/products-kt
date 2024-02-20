@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
@@ -8,28 +9,21 @@ plugins {
     id("org.openapi.generator")
 }
 
-val base_package = "${group}.components.products.rest"
+val basePackage = "${group}.components.products.rest"
 
-dependencies {
-    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-reactive", Versions.kotlinxCoroutines)
-
-    api("org.springframework.boot", "spring-boot-starter-web")
-    api("jakarta.validation", "jakarta.validation-api")
-
-    implementation("org.springdoc", "springdoc-openapi-data-rest", Versions.openapi)
-    implementation("org.springdoc", "springdoc-openapi-ui", Versions.openapi)
-    implementation("org.springdoc", "springdoc-openapi-kotlin", Versions.openapi)
-
+sourceSets {
+    main {
+        kotlin.srcDir("$buildDir/generate-resources/main/src/main/kotlin")
+    }
 }
-
 
 openApiGenerate {
     generatorName.set("kotlin-spring")
     inputSpec.set("$projectDir/src/main/resources/openapi.yml")
 
-    packageName.set("${base_package}")
-    apiPackage.set("${base_package}.apis")
-    modelPackage.set("${base_package}.dtos")
+    packageName.set(basePackage)
+    apiPackage.set("${basePackage}.apis")
+    modelPackage.set("${basePackage}.dtos")
     modelNameSuffix.set("RestDTO")
     apiNameSuffix.set("Api")
 
@@ -44,12 +38,20 @@ openApiGenerate {
     ))
 }
 
-tasks.withType<Test> {
-    finalizedBy(tasks.openApiGenerate)
+dependencies {
+    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-reactive", Versions.kotlinxCoroutines)
+
+    api("org.springframework.boot", "spring-boot-starter-web")
+    api("jakarta.validation", "jakarta.validation-api")
+
+    implementation("org.springdoc", "springdoc-openapi-data-rest", Versions.openapi)
+    implementation("org.springdoc", "springdoc-openapi-ui", Versions.openapi)
+    implementation("org.springdoc", "springdoc-openapi-kotlin", Versions.openapi)
+
 }
 
-java.sourceSets["main"].java {
-    srcDir("${projectDir}/build/generate-resources")
+tasks.withType<KotlinCompile> {
+    dependsOn(tasks.openApiGenerate)
 }
 
 tasks.getByName<BootJar>("bootJar") {
