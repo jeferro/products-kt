@@ -2,9 +2,9 @@ let now = new Date()
 
 db['products'].insertMany([
     {
-        _id: "one-product",
-        title: "One product",
-        description: "Description of one product",
+        _id: "1",
+        title: "Apple",
+        description: "Description about apples",
         enabled: true,
         metadata: {
             createdBy: 'user',
@@ -15,9 +15,9 @@ db['products'].insertMany([
          _class: 'com.jeferro.products.products.infrastructure.adapters.mongo.dtos.ProductMongoDTO'
     },
     {
-        _id: "two-product",
-        title: "Two product",
-        description: "Description of two product",
+        _id: "2",
+        title: "Kiwi",
+        description: "Description about kiwis",
         enabled: true,
         metadata: {
             createdBy: 'user',
@@ -28,9 +28,9 @@ db['products'].insertMany([
         _class: 'com.jeferro.products.products.infrastructure.adapters.mongo.dtos.ProductMongoDTO'
     },
     {
-        _id: "disabled-product",
-        title: "Disabled product",
-        description: "Description of disabled product",
+        _id: "3",
+        title: "Banana",
+        description: "Description about bananas",
         enabled: false,
         metadata: {
             createdBy: 'user',

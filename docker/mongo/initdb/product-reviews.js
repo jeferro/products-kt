@@ -2,8 +2,8 @@ let now = new Date()
 
 db['product-reviews'].insertMany([
     {
-        _id: "one-product:user",
-        comment: "Comment about product one by user",
+        _id: "1:user",
+        comment: "Comment about apple by user",
         metadata: {
             createdBy: 'user',
             createdAt: now,
