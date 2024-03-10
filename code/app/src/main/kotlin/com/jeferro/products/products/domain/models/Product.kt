@@ -34,9 +34,9 @@ class Product(
             id: ProductId,
             title: String,
             description: String,
-            userId: UserId
+            authId: UserId
         ): Product {
-            val metadata = Metadata.create(userId)
+            val metadata = Metadata.create(authId)
 
             val product = Product(
                 id,
@@ -57,7 +57,7 @@ class Product(
     fun update(
         title: String,
         description: String,
-        userId: UserId
+        authId: UserId
     ) {
         if (isDisabled) {
             throw DisabledProductException.create(id)
@@ -66,25 +66,25 @@ class Product(
         this.title = title
         this.description = description
 
-        markAsModifyBy(userId)
+        markAsModifyBy(authId)
 
         recordEvent(
             ProductUpserted.create(this)
         )
     }
 
-    fun changeActivation(enabled: Boolean, userId: UserId) {
+    fun changeActivation(enabled: Boolean, authId: UserId) {
         this.isEnabled = enabled
 
-        markAsModifyBy(userId)
+        markAsModifyBy(authId)
 
         recordEvent(
             create(this)
         )
     }
 
-    fun delete(userId: UserId) {
-        markAsModifyBy(userId)
+    fun delete(authId: UserId) {
+        markAsModifyBy(authId)
 
         recordEvent(
             ProductDeleted.create(this)

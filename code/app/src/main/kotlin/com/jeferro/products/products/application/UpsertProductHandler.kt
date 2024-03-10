@@ -27,13 +27,13 @@ class UpsertProductHandler(
                 productId,
                 operation.title,
                 operation.description,
-                operation.userId
+                operation.authId
             )
         } else {
             product.update(
                 operation.title,
                 operation.description,
-                operation.userId
+                operation.authId
             )
         }
 

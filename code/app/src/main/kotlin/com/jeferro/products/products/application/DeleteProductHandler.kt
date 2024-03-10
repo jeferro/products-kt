@@ -25,7 +25,7 @@ class DeleteProductHandler(
         val product = productFinder.findById(productId)
 
         product.delete(
-            operation.userId
+            operation.authId
         )
 
         productsRepository.deleteById(productId)

@@ -7,9 +7,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder
 import org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE
 
 class Auth(
-    val type: AuthType,
-    val userId: UserId?,
-    val roles: List<String>
+    val authId: UserId?,
+    val roles: List<String>,
+    private val isSystem: Boolean
 ) : Value() {
 
     companion object {
@@ -18,32 +18,30 @@ class Auth(
             roles: List<String>
         ): Auth {
             return Auth(
-                AuthType.USER,
                 userId,
-                roles
+                roles,
+                false
             )
         }
 
-        fun createOfSystem(): Auth {
+        fun createOfSystem(name: String): Auth {
             return Auth(
-                AuthType.SYSTEM,
-                null,
-                emptyList()
+                UserId(name),
+                emptyList(),
+                true
             )
         }
 
         fun createOfAnonymous(): Auth {
             return Auth(
-                AuthType.ANONYMOUS,
                 null,
-                emptyList()
+                emptyList(),
+                false
             )
         }
     }
 
-    private val isAnonymous = (type == AuthType.ANONYMOUS)
-
-    private val isSystem = (type == AuthType.SYSTEM)
+    private val isAnonymous = (authId == null)
 
     fun ensurePermissions(mandatoryRoles: List<String>) {
         if (isSystem) {
@@ -73,7 +71,7 @@ class Auth(
                 return "system"
             }
 
-            return userId!!.value
+            return authId!!.value
         }
 
     override fun toString(): String {
@@ -82,7 +80,7 @@ class Auth(
         }
 
         return ToStringBuilder(this, SHORT_PREFIX_STYLE)
-            .append("userId", userId)
+            .append("userId", authId)
             .append("roles", roles)
             .build()
     }

@@ -65,7 +65,7 @@ class UpsertProductHandlerTest {
             title,
             description,
             true,
-            Metadata.create(operation.userId)
+            Metadata.create(operation.authId)
         )
 
         assertAll(
