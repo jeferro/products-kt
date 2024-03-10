@@ -24,8 +24,8 @@ abstract class Aggregate<I : Identifier>(
 
     private val domainEvents = ArrayList<DomainEvent>()
 
-    protected fun markAsModifyBy(userId: UserId) {
-        metadata.markAsModifyBy(userId)
+    protected fun markAsModifyBy(authId: UserId) {
+        metadata.markAsModifyBy(authId)
     }
 
     protected fun recordEvent(event: DomainEvent) {

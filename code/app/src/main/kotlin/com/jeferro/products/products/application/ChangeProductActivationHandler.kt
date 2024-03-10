@@ -26,7 +26,7 @@ class ChangeProductActivationHandler(
 
         product.changeActivation(
             operation.isEnabled,
-            operation.userId
+            operation.authId
         )
 
         productsRepository.save(product)

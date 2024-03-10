@@ -26,12 +26,12 @@ class UpsertProductReviewHandler(
             productReview = ProductReview.create(
                 productReviewId,
                 operation.comment,
-                operation.userId
+                operation.authId
             )
         } else {
             productReview.update(
                 operation.comment,
-                operation.userId
+                operation.authId
             )
         }
 

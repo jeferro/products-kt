@@ -61,7 +61,7 @@ class UpsertProductReviewTest {
         val expectedProductReview = ProductReview(
             productReviewId,
             comment,
-            Metadata.create(params.userId)
+            Metadata.create(params.authId)
         )
 
         assertAll(

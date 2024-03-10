@@ -17,21 +17,21 @@ class ProductReview(
 
         private fun ensureBelongsToUser(
             productReviewId: ProductReviewId,
-            userId: UserId
+            authId: UserId
         ) {
-            if (!productReviewId.belongsToUser(userId)) {
-                throw ForbiddenException.createOf(userId)
+            if (!productReviewId.belongsToUser(authId)) {
+                throw ForbiddenException.createOf(authId)
             }
         }
 
         fun create(
             productReviewId: ProductReviewId,
             comment: String,
-            userId: UserId
+            authId: UserId
         ): ProductReview {
-            ensureBelongsToUser(productReviewId, userId)
+            ensureBelongsToUser(productReviewId, authId)
 
-            val metadata = Metadata.create(userId)
+            val metadata = Metadata.create(authId)
 
             val productReview = ProductReview(
                 productReviewId,
@@ -52,23 +52,23 @@ class ProductReview(
 
     fun update(
         comment: String,
-        userId: UserId
+        authId: UserId
     ) {
-        ensureBelongsToUser(id, userId)
+        ensureBelongsToUser(id, authId)
 
         this.comment = comment
 
-        markAsModifyBy(userId)
+        markAsModifyBy(authId)
 
         recordEvent(
             ProductReviewUpserted.create(this)
         )
     }
 
-    fun delete(userId: UserId) {
-        ensureBelongsToUser(id, userId)
+    fun delete(authId: UserId) {
+        ensureBelongsToUser(id, authId)
 
-        markAsModifyBy(userId)
+        markAsModifyBy(authId)
 
         recordEvent(
             ProductReviewDeleted.create(this)

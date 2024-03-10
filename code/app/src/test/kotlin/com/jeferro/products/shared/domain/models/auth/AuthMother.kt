@@ -12,7 +12,7 @@ object AuthMother {
     }
 
     fun oneSystemAuth(): Auth {
-        return Auth.createOfSystem()
+        return Auth.createOfSystem("fake-system")
     }
 
     fun oneUserAuth(): Auth {

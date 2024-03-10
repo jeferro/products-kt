@@ -59,7 +59,7 @@ class AuthenticationRestControllerIT {
                 .asyncDispatch(mockMvc)
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.userId").value(expectedAuth.userId!!.value))
+                .andExpect(jsonPath("$.userId").value(expectedAuth.authId!!.value))
                 .andExpect(jsonPath("$.roles").isArray())
                 .andExpect(jsonPath("$.roles[0]").value(expectedAuth.roles[0]))
         }

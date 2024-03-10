@@ -29,7 +29,7 @@ class JwtEncoder(
     fun encode(auth: Auth): String {
         val issuedAt = Instant.now()
         val expiresAt = issuedAt.plusMillis(jwtProperties.durationInMillis)
-        val subject = auth.userId?.value
+        val subject = auth.authId?.value
             ?: throw UnauthorizedException.create()
 
         val token = JWT.create()

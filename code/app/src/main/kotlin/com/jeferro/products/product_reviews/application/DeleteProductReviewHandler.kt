@@ -25,7 +25,7 @@ class DeleteProductReviewHandler(
         val productReview = productReviewFinder.findById(productReviewId)
 
         productReview.delete(
-            operation.userId
+            operation.authId
         )
 
         productReviewsRepository.deleteById(productReviewId)
