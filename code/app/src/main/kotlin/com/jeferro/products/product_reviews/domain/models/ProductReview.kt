@@ -50,6 +50,8 @@ class ProductReview(
     var comment = comment
         private set
 
+    val productId = id.productId
+
     fun update(
         comment: String,
         authId: UserId
