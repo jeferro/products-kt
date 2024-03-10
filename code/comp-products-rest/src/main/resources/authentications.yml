@@ -20,10 +20,10 @@ components:
       type: object
       description: Authentication information
       required:
-        - userId
+        - authId
         - roles
       properties:
-        userId:
+        authId:
           type: string
           description: Identifier of user
           example: 'one-user'
